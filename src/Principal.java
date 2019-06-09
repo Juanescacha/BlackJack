@@ -1,9 +1,12 @@
+/**en la clase Principal se crea un objeto de la clase Vista, el cual inicia todo el juego
+ */
+package mesaBlackJack;
 /**
  * 
  */
 
 /**
- * @author Juan Esteban Camargo
+ * @author Juan Esteban Camargo y Juan Camilo Gonzalez
  *
  */
 public class Principal {

@@ -1,7 +1,9 @@
+/**la clase carta es donde se define una carta como tal, con sus dos variables que son palo y valor, 
+ * tambien estan los metodos para obtener el valor numerico de cada numero.
+ */
+package mesaBlackJack;
 //declaracion de la clase carta
-
 public class Carta {
-	
 	//creacion de las variables que componen una carta
 	String palo[] = { "diamantes", "picas", "treboles", "corazones" };
 	String numero[] = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
