@@ -1,7 +1,6 @@
 /**la clase Jugador se encarga de manejar las 2 cartas con las que se juegan, tambien administra el dinero
  * del jugador y maneja los metodos de interaccion con el usuario
  */
-package mesaBlackJack;
 
 public class Jugador {
 	

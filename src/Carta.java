@@ -1,7 +1,6 @@
 /**la clase carta es donde se define una carta como tal, con sus dos variables que son palo y valor, 
  * tambien estan los metodos para obtener el valor numerico de cada numero.
  */
-package mesaBlackJack;
 //declaracion de la clase carta
 public class Carta {
 	//creacion de las variables que componen una carta

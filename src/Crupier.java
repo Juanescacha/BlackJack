@@ -1,7 +1,6 @@
 /**la clase Crupier es donde se crea la baraja con sus 52 cartas, importandolas de la clase Carta, 
  * tambien se encuentran todos los metodos que barajan las cartas y se encargan del juego
  */
-package mesaBlackJack;
 
 import java.util.ArrayList;
 
