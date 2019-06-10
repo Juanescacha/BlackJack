@@ -22,8 +22,8 @@ public class Principal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Vista vistaobj = new Vista();
-		vistaobj.iniciarJuego();
+		Control controlObj = new Control();
+		controlObj.iniciarJuego();
 	}
 
 }
