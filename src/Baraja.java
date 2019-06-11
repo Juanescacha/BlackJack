@@ -63,6 +63,10 @@ public class Baraja {
 		for ( int i = 1 ; i < 5 ; i++ ) {
 			cartas.add(new Carta(palos[i-1], "Nueve", 9));
 		}
+		
+		for ( int i = 1 ; i < 5 ; i++ ) {
+			cartas.add(new Carta(palos[i-1], "Diez", 10));
+		}
 	}
 	
 

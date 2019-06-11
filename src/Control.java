@@ -11,12 +11,15 @@ public class Control {
 	ArrayList<Carta> cartas = new ArrayList<Carta>();
 	int ganadas;
 	int perdidas;
+	int dinero = 100000;
+	int apuesta;
 	
 	//Crea una nueva baraja cada sesion, reinicia juego cada ronda pero sigue el conteo de ganadas y perdidas
 	public void iniciarJuego() {
 		Baraja.asignarCartas();
-		while(true) iniciarRonda();
-		
+		while(true && dinero > 0) iniciarRonda();
+		System.out.println("No puedes Apostar Mas... Adios! ");
+		terminar();
 	}
 	
 	public void iniciarRonda() {
@@ -35,7 +38,6 @@ public class Control {
 		System.out.println("");
 		
 		Scanner entrada = new Scanner(System.in);
-		
 		System.out.print("R/. ");
 		String respuesta = entrada.nextLine();
 		System.out.println("_____________________________________");
@@ -44,6 +46,10 @@ public class Control {
 
 		switch(respuesta) {
 			case "1" :
+				System.out.println("Tienes " + dinero + " Disponible");
+				System.out.println("Cuanto quieres Apostar? ");
+				System.out.println("Si apuestas un valor mayor al disponible, o entras un valor invalido seras redirigido de nuevo al Menu Principal");
+				System.out.print("R/. ");
 				break;
 	
 			case "2" :
@@ -53,6 +59,8 @@ public class Control {
 	
 			case "3" :
 				System.out.println("");
+				System.out.println("tienes 10,000 para iniciar a apostar");
+				System.out.println("si te quedas sin dinero no podras seguir jugando");
 				System.out.println("El jugador Pierde en Empate");
 				System.out.println("El que saque AS mas una Figura hace BlackJack y gana automaticamente");
 				System.out.println("Crupier se Planta con 17 o mas");
@@ -61,6 +69,9 @@ public class Control {
 				System.out.println("El jugador tiene la posibilidad de plantarse o de pedir más cartas hasta alcanzar los 21 puntos. Si al pedir una nueva carta se pasa de 21, pierde automáticamente la apuesta y sus cartas retiradas por el crupier");
 				System.out.println("El crupier reparte dos cartas a cada jugador. El jugador verá sus dos cartas pero solo una del crupier.  La otra carta del crupier se verá cubierta");
 				System.out.println("El jugador debera apostar un monto minimo para entrar a la mesa");
+				System.out.println("_____________________________________");
+				System.out.println("");
+				System.out.println("");
 				iniciarRonda();
 	
 			case "4" :
@@ -68,17 +79,37 @@ public class Control {
 				System.out.println("Estadisticas del Juego");
 				System.out.println("Partidas Ganadas: " + ganadas);
 				System.out.println("Partidas Perdidas: " + perdidas + "\n");
+				System.out.println("_____________________________________");
+				System.out.println("");
+				System.out.println("");
 	
 				iniciarRonda();
 	
 			default :
 				System.out.println("");
 				System.out.println("Ingresaste una Opcion Invalida \n");
+				System.out.println("_____________________________________");
+				System.out.println("");
+				System.out.println("");
 				iniciarRonda();
 		}
+		String respuesta3;
+		
+		respuesta3 = entrada.nextLine();
+		apuesta = Integer.parseInt(respuesta3);
+		dinero = dinero - apuesta;
+		if(dinero < 0) {
+			System.out.println("No puedes apostar esa Cantidad... Adios! ");
+			terminar();
+		}
+		
+		System.out.println("_____________________________________");
+		System.out.println("");
+		System.out.println("");	  
 		
 		ArrayList<Carta> cartasCrupier = new ArrayList<Carta>();
 		ArrayList<Carta> cartasJugador = new ArrayList<Carta>();
+		
 		
 		cartasCrupier.add(Baraja.elegirCarta());
 		
@@ -88,7 +119,7 @@ public class Control {
 		crupierMaxValor = valorManoCrupier[1];
 		
 		if(crupierMinValor == crupierMaxValor) System.out.println("El Crupier tiene " + crupierMinValor );
-		else System.out.println("El Crupier tiene " + crupierMinValor + " o " + crupierMaxValor + " debido al As");
+		else System.out.println("El Crupier tiene " + crupierMinValor + " o " + crupierMaxValor + " Puntos");
 		
 		boolean rondaFinalizada = false;
 		boolean turnoDelJugadorFinalizado = false;
@@ -105,9 +136,10 @@ public class Control {
 		if(jugadorMinValor == jugadorMaxValor) System.out.println("Tienes " + jugadorMinValor + " Puntos");
 		else System.out.println("Tienes " + jugadorMinValor + " o " +  jugadorMaxValor + " Puntos");
 		
-		if(crupierMaxValor == 21) {
+		if(jugadorMaxValor == 21) {
 			System.out.println("Has sacado BlackJack!!!");
 			ganadas++;
+			dinero = dinero + ( apuesta * 2 ) ;
 			System.out.println("Partidas Ganadas: " + ganadas);
 			System.out.println("Partidas Perdidas: " + perdidas + "\n");
 			
@@ -115,13 +147,15 @@ public class Control {
 			turnoDelJugadorFinalizado = true;
 		}
 		
-		if(!turnoDelJugadorFinalizado && !rondaFinalizada) {
+		String respuesta2 = "";
+		
+		if(!turnoDelJugadorFinalizado && !rondaFinalizada && dinero >= 0) {
 			System.out.println("Que deseas hacer?");
 			System.out.println("1. Pedir una Carta");
 			System.out.println("2. Plantarte \n");
 			
 			System.out.print("R/. ");
-			respuesta = entrada.nextLine();
+			respuesta2 = entrada.nextLine();
 			System.out.println("_____________________________________");
 			System.out.println("");
 			System.out.println("");
@@ -130,7 +164,7 @@ public class Control {
 		
 		
 		while(!turnoDelJugadorFinalizado && !rondaFinalizada) {
-			if(respuesta.equals("1")) {
+			if(respuesta2.equals("1")) {
 				cartasJugador.add(Baraja.elegirCarta());
 				valorManoJugador = Crupier.getValores(cartasJugador);
 				jugadorMinValor = valorManoJugador[0];
@@ -156,16 +190,17 @@ public class Control {
 					ganadas++;
 					System.out.println("Partidas Ganadas: " + ganadas);
 					System.out.println("Partidas Perdidas: " + perdidas + "\n");
+					dinero = dinero + ( apuesta * 2 ) ;
 				}
 			}
 			
 			
-			if(respuesta.equals("2")) {
+			if(respuesta2.equals("2")) {
 				System.out.println("Te has Plantado ");
 				turnoDelJugadorFinalizado = true;
 			}
 			
-			if(!turnoDelJugadorFinalizado) {
+			if(!turnoDelJugadorFinalizado ) {
 				System.out.println("Que deseas hacer?");
 				System.out.println("1. Pedir una Carta");
 				System.out.println("2. Plantarte \n");
@@ -194,7 +229,7 @@ public class Control {
 			if(crupierMaxValor == crupierMinValor) System.out.println("El Crupier tiene " + crupierMinValor + " Puntos");
 			else System.out.println("El Crupier tiene " + crupierMinValor + " o " + crupierMaxValor + " Puntos");
 			
-			if(crupierMaxValor >= 17 && crupierMaxValor < 22) {
+			if(crupierMaxValor >= 17 && crupierMaxValor < 22 ) {
 				
 				if(crupierMaxValor == 21) {
 					System.out.println("El Crupier ha sacado BlackJack");
@@ -214,6 +249,7 @@ public class Control {
 					System.out.println("Partidas Perdidas: " + perdidas + "\n");
 					turnoDelCrupier = true;
 					rondaFinalizada = true;
+					dinero = dinero + ( apuesta * 2 ) ;
 				}
 				
 				else if(crupierMaxValor == jugadorMaxValor) {
@@ -245,6 +281,7 @@ public class Control {
 				System.out.println("Partidas Perdidas: " + perdidas + "\n");
 				turnoDelCrupier = true;
 				rondaFinalizada = true;
+				dinero = dinero + ( apuesta * 2 ) ;
 			}
 			
 		}
