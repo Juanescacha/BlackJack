@@ -46,7 +46,7 @@ public class Control {
 
 		switch(respuesta) {
 			case "1" :
-				System.out.println("Tienes " + dinero + " Disponible");
+				System.out.println("Tienes $" + dinero + " Disponible");
 				System.out.println("Cuanto quieres Apostar? ");
 				System.out.println("Si apuestas un valor mayor al disponible, o entras un valor invalido seras redirigido de nuevo al Menu Principal");
 				System.out.print("R/. ");
