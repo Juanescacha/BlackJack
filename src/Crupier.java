@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Juan Esteban Camargo
+ * @author Juan Esteban Camargo y Juan Camilo Gonzalez
  *
  */
 

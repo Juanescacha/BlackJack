@@ -1,5 +1,4 @@
-/**la clase carta es donde se define una carta como tal, con sus dos variables que son palo y valor, 
- * tambien estan los metodos para obtener el valor numerico de cada numero.
+/**la clase carta es donde se define una carta como tal, con sus tres variables que son palo, nombre y valor
  */
 
 public class Carta {

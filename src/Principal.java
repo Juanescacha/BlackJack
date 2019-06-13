@@ -1,4 +1,4 @@
-/**en la clase Principal se crea un objeto de la clase Vista, el cual inicia todo el juego
+/**en la clase Principal se crea un objeto de la clase Control, el cual inicia todo el juego
  */
 
 /**
